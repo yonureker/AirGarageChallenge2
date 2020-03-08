@@ -55,10 +55,8 @@ let regex = /[AIO140]/
 // return array of arrays of scanned plates with all possible combinations
 let scannedCombinations = scanned.map((item) => {
   if(regex.test(item)){
-    console.log(`${item} is ok`)
     return getAllCombinations(item, myHash)
   } else {
-    console.log(`${item} is not ok`)
     return [item];
   }
 })
@@ -71,6 +69,7 @@ let unpaid = scannedCombinations.filter((item) => {
   return true;
 }).map(item => item[0])
 
+// get route
 app.get("/api/unpaid", (req, res) => res.send(unpaid));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
